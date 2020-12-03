@@ -13,17 +13,17 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * 获取摘要 包含MD5等, 详见 Algorithm
+ * 获取摘要 算法包含MD5等, 详见 Algorithm
  *
  * @author Jack Wang
- * @see Algorithm
+ * @see com.github.jackbytes.security.crypto.Algorithm
  */
 @SuppressWarnings("unused")
 public class DigestUtil {
 
     private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-    // ++++++++++++++++++++++++ MD5 AND SHA ++++++++++++++++++++++++
+    // ++++++++++++++++++++++++ MD5 AND SHA, 返回的摘要信息均是16进制的字符串 ++++++++++++++++++++++++
 
     public static String md5(byte[] source) {
         try {
@@ -79,7 +79,7 @@ public class DigestUtil {
         return toHexString(result);
     }
 
-    // ++++++++++++++++++++++++ HMAC ++++++++++++++++++++++++
+    // +++++++++++++++++++++++++++ HMAC, 返回的摘要信息均是16进制的字符串 +++++++++++++++++++++++++++
 
     /**
      * HMAC_SHA256 算法生成摘要信息;

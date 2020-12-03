@@ -61,7 +61,7 @@ public class DigestUtil {
         return null;
     }
 
-    public static String digest(String source, String algorithm) throws NoSuchAlgorithmException {
+    public static String digest(String source, Algorithm algorithm) throws NoSuchAlgorithmException {
         return digest(source.getBytes(StandardCharsets.UTF_8), algorithm);
     }
 
@@ -73,8 +73,8 @@ public class DigestUtil {
      * @return 摘要信息字符串
      * @throws NoSuchAlgorithmException 没有此算法时抛异常
      */
-    public static String digest(byte[] source, String algorithm) throws NoSuchAlgorithmException {
-        MessageDigest digest = MessageDigest.getInstance(algorithm);
+    public static String digest(byte[] source, Algorithm algorithm) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance(algorithm.getAlgorithmName());
         byte[] result = digest.digest(source);
         return toHexString(result);
     }
@@ -123,9 +123,9 @@ public class DigestUtil {
      * @throws NoSuchAlgorithmException 没有此种算法则抛异常;
      * @throws InvalidKeyException      非法密匙;
      */
-    public static String hmac(byte[] source, byte[] key, String algorithm) throws NoSuchAlgorithmException, InvalidKeyException {
-        SecretKey secretKey = new SecretKeySpec(key, algorithm);
-        Mac mac = Mac.getInstance(algorithm);
+    public static String hmac(byte[] source, byte[] key, Algorithm algorithm) throws NoSuchAlgorithmException, InvalidKeyException {
+        SecretKey secretKey = new SecretKeySpec(key, algorithm.getAlgorithmName());
+        Mac mac = Mac.getInstance(algorithm.getAlgorithmName());
         mac.init(secretKey);
         return toHexString(mac.doFinal(source));
     }
@@ -137,7 +137,7 @@ public class DigestUtil {
      * @return 16进制形式的 key
      * @throws NoSuchAlgorithmException 没有此种算法则抛异常;
      */
-    public static String generateHexHmacKey(String algorithm) throws NoSuchAlgorithmException {
+    public static String generateHexHmacKey(Algorithm algorithm) throws NoSuchAlgorithmException {
         return toHexString(generateHmacKey(algorithm));
     }
 
@@ -148,7 +148,7 @@ public class DigestUtil {
      * @return base64 形式的 key
      * @throws NoSuchAlgorithmException 没有此种算法则抛异常;
      */
-    public static String generateBase64HmacKey(String algorithm) throws NoSuchAlgorithmException {
+    public static String generateBase64HmacKey(Algorithm algorithm) throws NoSuchAlgorithmException {
         return Base64Util.encode(generateHmacKey(algorithm));
     }
 
@@ -159,8 +159,8 @@ public class DigestUtil {
      * @return 秘钥byte数组;
      * @throws NoSuchAlgorithmException 没有此种算法则抛异常;
      */
-    public static byte[] generateHmacKey(String algorithm) throws NoSuchAlgorithmException {
-        KeyGenerator generator = KeyGenerator.getInstance(algorithm);
+    public static byte[] generateHmacKey(Algorithm algorithm) throws NoSuchAlgorithmException {
+        KeyGenerator generator = KeyGenerator.getInstance(algorithm.getAlgorithmName());
         SecretKey secretKey = generator.generateKey();
         return secretKey.getEncoded();
     }

@@ -6,43 +6,45 @@ package com.github.jackbytes.security.crypto;
  * @author Jack Wang
  */
 @SuppressWarnings("unused")
-public interface Algorithm {
+public enum Algorithm {
 
     // ++++++++++++++++++++++++ Digest常用 ++++++++++++++++++++++++
-    //32char
-    String MD5 = "MD5";
 
-    //40char
-    String SHA1 = "SHA-1";
-
-    //64char
-    String SHA256 = "SHA-256";
-
-    //128char
-    String SHA512 = "SHA-512";
+    MD5("MD5", "32char"),
+    SHA1("SHA-1", "40char"),
+    SHA256("SHA-256", "64char"),
+    SHA512("SHA-512", "128char"),
 
     // ++++++++++++++++++++++++ Digest不常用 ++++++++++++++++++++++++
 
-    //32char
-    String MD2 = "MD2";
-
-    //56char
-    String SHA224 = "SHA-224";
-
-    //96char
-    String SHA384 = "SHA-384";
-
-
-    String SHA512224 = "SHA-512/224";
-
-    String SHA512256 = "SHA-512/256";
+    MD2("MD2", "32char"),
+    SHA224("SHA-224", "56char"),
+    SHA384("SHA-384", "96char"),
+    SHA512224("SHA-512/224", ""),
+    SHA512256("SHA-512/256", ""),
 
     // ++++++++++++++++++++++++ HMAC专用 ++++++++++++++++++++++++
 
-    String HMAC_MD5 = "HmacMD5";
-    String HMAC_SHA1 = "HmacSHA1";
-    String HMAC_SHA224 = "HmacSHA224";
-    String HMAC_SHA256 = "HmacSHA256";
-    String HMAC_SHA384 = "HmacSHA384";
-    String HMAC_SHA512 = "HmacSHA512";
+    HMAC_MD5("HmacMD5", ""),
+    HMAC_SHA1("HmacSHA1", ""),
+    HMAC_SHA224("HmacSHA224", ""),
+    HMAC_SHA256("HmacSHA256", ""),
+    HMAC_SHA384("HmacSHA384", ""),
+    HMAC_SHA512("HmacSHA512", "");
+
+    private final String algorithmName;
+    private final String description;
+
+    Algorithm(String algorithmName, String description) {
+        this.algorithmName = algorithmName;
+        this.description = description;
+    }
+
+    public String getAlgorithmName() {
+        return this.algorithmName;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
 }

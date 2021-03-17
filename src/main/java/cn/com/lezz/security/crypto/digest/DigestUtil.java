@@ -1,7 +1,7 @@
-package com.github.jackbytes.security.crypto.digest;
+package cn.com.lezz.security.crypto.digest;
 
-import com.github.jackbytes.security.crypto.Algorithm;
-import com.github.jackbytes.security.base64.Base64Util;
+import cn.com.lezz.security.base64.Base64Util;
+import cn.com.lezz.security.crypto.Algorithm;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
  * 获取摘要 算法包含MD5等, 详见 Algorithm
  *
  * @author Jack Wang
- * @see com.github.jackbytes.security.crypto.Algorithm
+ * @see Algorithm
  */
 @SuppressWarnings("unused")
 public class DigestUtil {
@@ -67,6 +67,7 @@ public class DigestUtil {
 
     /**
      * 生成摘要
+     * 注: 在MessageDigest使用时,勿将其定义为单例(static),此对象非线程安全,每次使用时均使用MessageDigest.getInstance()方法获取对象;
      *
      * @param source    源数据
      * @param algorithm 算法名称
@@ -184,6 +185,18 @@ public class DigestUtil {
             builder.append(HEX_CHAR[item & 0x0f]);
         }
         return builder.toString();
+    }
+
+    /**
+     * 将16进制字符串转化成byte数组;
+     *
+     * @param hexString 16进制字符串
+     * @return byte数组;
+     */
+    public static byte[] hexToBytes(String hexString){
+
+        // TODO
+        return null;
     }
 
     public static String toHexString2(byte[] source) {

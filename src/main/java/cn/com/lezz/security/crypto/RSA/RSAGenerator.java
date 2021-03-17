@@ -1,6 +1,6 @@
-package com.github.jackbytes.security.crypto.RSA;
+package cn.com.lezz.security.crypto.RSA;
 
-import com.github.jackbytes.security.base64.Base64Util;
+import cn.com.lezz.security.base64.Base64Util;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,7 +26,7 @@ public class RSAGenerator {
     /**
      * 随机生成密钥对
      *
-     * @param path    生成秘钥文件的目标路径
+     * @param path    生成秘钥文件的目标路径(不包含文件名, 仅是路径)
      * @param keySize 长度,一般1024, 或者2048
      */
     public static void generateKey(String path, int keySize) {

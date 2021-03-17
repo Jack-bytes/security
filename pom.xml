@@ -6,8 +6,8 @@
 
     <parent>
         <artifactId>parent</artifactId>
-        <groupId>com.github.jack-bytes</groupId>
-        <version>1.2-parent</version>
+        <groupId>cn.com.lezz</groupId>
+        <version>1.0</version>
     </parent>
 
     <artifactId>security</artifactId>

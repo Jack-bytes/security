@@ -1,8 +1,7 @@
-package com.github.jackbytes.security;
+package cn.com.lezz.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.github.jackbytes.security.JWT.JWTUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -17,8 +16,8 @@ public class jwtTest {
         Map map = new HashMap();
         map.put("aa", "dd");
 
-        String token = new JWTUtil("sflsakjhflsjldjf").createToken(map);
-        System.out.println(token);
+//        String token = new JWTUtil("sflsakjhflsjldjf").createToken(map);
+//        System.out.println(token);
     }
 
     @Test

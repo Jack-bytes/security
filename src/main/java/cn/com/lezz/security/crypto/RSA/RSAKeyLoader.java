@@ -1,6 +1,6 @@
-package com.github.jackbytes.security.crypto.RSA;
+package cn.com.lezz.security.crypto.RSA;
 
-import com.github.jackbytes.security.base64.Base64Util;
+import cn.com.lezz.security.base64.Base64Util;
 
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;

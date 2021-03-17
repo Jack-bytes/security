@@ -1,4 +1,4 @@
-package com.github.jackbytes.security.JWT;
+package cn.com.lezz.security.JWT;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
@@ -17,13 +17,23 @@ import java.util.Map;
  */
 @Getter
 @Setter
-public class JWTUtil {
+public class JWTUtil {     //重新写单例模式,getInstance,然后把添加额外的data改写成一个一个加;
+
+    /*--------------------------------------------
+	|             C O N S T A N T S             |
+	============================================*/
+
+    private static JWTUtil util;
+
+    /*--------------------------------------------
+	|    I N S T A N C E   V A R I A B L E S    |
+	============================================*/
 
     /**
      * token维持的时间;
      * 单位：秒
      */
-    private int duration = 30 * 60;
+    private int expireTime = 30 * 60;
 
     private String audience = "everyone";
 
@@ -36,18 +46,43 @@ public class JWTUtil {
 
     private String claimName = "data";
 
-    public JWTUtil(String secret) {
+    /*--------------------------------------------
+	|         C O N S T R U C T O R S           |
+	============================================*/
+
+    private JWTUtil(String secret) {
         if (secret == null || "".equals(secret.trim())) {
             throw new IllegalArgumentException("请设置算法秘钥!");
         }
         this.algorithm = Algorithm.HMAC256(secret);
     }
 
+    /*--------------------------------------------
+	|               M E T H O D S               |
+	============================================*/
+
+    public static JWTUtil getInstance(String secret) {
+        if (util == null) {
+            synchronized (JWTUtil.class) {
+                if (util == null) {
+                    util = new JWTUtil(secret);
+
+
+
+
+
+
+                }
+            }
+        }
+        return util;
+    }
+
     public String createToken(Map<String, ?> data) {
         //发布时间
         long issuedAt = System.currentTimeMillis();
         //超时时间
-        long expiresAt = issuedAt + this.duration * 1000;
+        long expiresAt = issuedAt + this.expireTime * 1000;
         JWTCreator.Builder builder = JWT.create()
                 .withAudience(this.audience)
                 .withExpiresAt(new Date(expiresAt))
@@ -59,7 +94,7 @@ public class JWTUtil {
     }
 
     /**
-     * 校验token
+     * 校验token, 以下异常是按照抛出的先后顺序排列;
      *
      * @param token token
      * @return claim
@@ -69,7 +104,7 @@ public class JWTUtil {
      * @see com.auth0.jwt.exceptions.TokenExpiredException          token过期;
      * @see com.auth0.jwt.exceptions.InvalidClaimException          从claim中取数据的类型和放进去的类型对应不上;
      */
-    public Map<String, ?> verify(String token) {
+    public Object verify(String token) {
         JWTVerifier verifier = JWT
                 .require(this.algorithm)
                 .withAudience(this.audience)
@@ -77,7 +112,7 @@ public class JWTUtil {
                 .build();
         DecodedJWT decodedJWT = verifier.verify(token);
         Claim claim = decodedJWT.getClaim(this.claimName);
-        return claim.asMap();
+        return claim.as(Object.class);//asMap();
     }
 
 }

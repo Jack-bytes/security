@@ -1,8 +1,8 @@
-package com.github.jackbytes.security;
+package cn.com.lezz.security;
 
-import com.github.jackbytes.security.crypto.RSA.RSAGenerator;
-import com.github.jackbytes.security.crypto.RSA.RSAKeyLoader;
-import com.github.jackbytes.security.crypto.RSA.RSAUtil;
+import cn.com.lezz.security.crypto.RSA.RSAGenerator;
+import cn.com.lezz.security.crypto.RSA.RSAKeyLoader;
+import cn.com.lezz.security.crypto.RSA.RSAUtil;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;

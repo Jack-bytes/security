@@ -1,4 +1,4 @@
-package com.github.jackbytes.security.crypto;
+package cn.com.lezz.security.crypto;
 
 /**
  * 摘要算法名称
@@ -35,6 +35,12 @@ public enum Algorithm {
     private final String algorithmName;
     private final String description;
 
+    /**
+     * 构造方法只能是private 所以这里省略,因为枚举类只能在类中定义好对象,不能在外部定义;
+     *
+     * @param algorithmName
+     * @param description
+     */
     Algorithm(String algorithmName, String description) {
         this.algorithmName = algorithmName;
         this.description = description;

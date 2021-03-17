@@ -1,7 +1,7 @@
-package com.github.jackbytes.security;
+package cn.com.lezz.security;
 
-import com.github.jackbytes.security.crypto.Algorithm;
-import com.github.jackbytes.security.crypto.digest.DigestUtil;
+import cn.com.lezz.security.crypto.digest.DigestUtil;
+import cn.com.lezz.security.crypto.Algorithm;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;

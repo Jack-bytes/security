@@ -1,4 +1,4 @@
-package com.github.jackbytes.security;
+package cn.com.lezz.security;
 
 import com.fastdfs.FastDFSClientUtils;
 import org.jsoup.Jsoup;

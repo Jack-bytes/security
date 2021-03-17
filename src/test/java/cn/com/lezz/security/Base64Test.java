@@ -1,6 +1,6 @@
-package com.github.jackbytes.security;
+package cn.com.lezz.security;
 
-import com.github.jackbytes.security.base64.Base64Util;
+import cn.com.lezz.security.base64.Base64Util;
 import org.junit.jupiter.api.Test;
 
 public class Base64Test {

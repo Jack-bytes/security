@@ -1,6 +1,5 @@
 package cn.com.lezz.security;
 
-import com.fastdfs.FastDFSClientUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -22,9 +21,7 @@ public class Test22 {
         String[] s = {"a", "b", "c"};
 
         System.out.println(Arrays.toString(s));
-        FastDFSClientUtils fastDFSClientUtils = FastDFSClientUtils.getInstance();
-        String url = fastDFSClientUtils.upload(new File("D:/cache/a.jpg"));
-        System.out.println(url);
+
 
 
 

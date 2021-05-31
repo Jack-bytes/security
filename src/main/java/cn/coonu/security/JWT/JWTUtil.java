@@ -1,4 +1,4 @@
-package cn.com.lezz.security.JWT;
+package cn.coonu.security.JWT;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;

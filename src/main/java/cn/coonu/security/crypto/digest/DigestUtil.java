@@ -1,7 +1,7 @@
-package cn.com.lezz.security.crypto.digest;
+package cn.coonu.security.crypto.digest;
 
-import cn.com.lezz.security.base64.Base64Util;
-import cn.com.lezz.security.crypto.Algorithm;
+import cn.coonu.security.base64.Base64Util;
+import cn.coonu.security.crypto.Algorithm;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;

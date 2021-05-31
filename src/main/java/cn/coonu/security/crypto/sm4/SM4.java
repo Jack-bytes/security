@@ -1,4 +1,4 @@
-package cn.com.lezz.security.crypto.sm4;
+package cn.coonu.security.crypto.sm4;
 
 /**
  * 国密SM4算法:

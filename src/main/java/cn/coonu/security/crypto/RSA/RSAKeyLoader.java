@@ -1,6 +1,6 @@
-package cn.com.lezz.security.crypto.RSA;
+package cn.coonu.security.crypto.RSA;
 
-import cn.com.lezz.security.base64.Base64Util;
+import cn.coonu.security.base64.Base64Util;
 
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;

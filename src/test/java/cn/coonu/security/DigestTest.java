@@ -1,7 +1,7 @@
-package cn.com.lezz.security;
+package cn.coonu.security;
 
-import cn.com.lezz.security.crypto.digest.DigestUtil;
-import cn.com.lezz.security.crypto.Algorithm;
+import cn.coonu.security.crypto.digest.DigestUtil;
+import cn.coonu.security.crypto.Algorithm;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;

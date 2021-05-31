@@ -1,4 +1,4 @@
-package cn.com.lezz.security.base64;
+package cn.coonu.security.base64;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;

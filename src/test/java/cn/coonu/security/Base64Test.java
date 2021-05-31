@@ -1,6 +1,6 @@
-package cn.com.lezz.security;
+package cn.coonu.security;
 
-import cn.com.lezz.security.base64.Base64Util;
+import cn.coonu.security.base64.Base64Util;
 import org.junit.jupiter.api.Test;
 
 public class Base64Test {

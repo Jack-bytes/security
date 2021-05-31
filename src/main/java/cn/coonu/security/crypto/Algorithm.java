@@ -1,4 +1,4 @@
-package cn.com.lezz.security.crypto;
+package cn.coonu.security.crypto;
 
 /**
  * 摘要算法名称

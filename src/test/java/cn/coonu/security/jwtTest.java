@@ -1,4 +1,4 @@
-package cn.com.lezz.security;
+package cn.coonu.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

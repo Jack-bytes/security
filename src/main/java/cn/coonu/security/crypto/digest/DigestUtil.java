@@ -28,8 +28,7 @@ public class DigestUtil {
     public static String md5(byte[] source) {
         try {
             return digest(source, Algorithm.MD5);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        } catch (NoSuchAlgorithmException ignore) {
         }
         return null;
     }
@@ -37,8 +36,7 @@ public class DigestUtil {
     public static String sha1(byte[] source) {
         try {
             return digest(source, Algorithm.SHA1);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        } catch (NoSuchAlgorithmException ignore) {
         }
         return null;
     }
@@ -46,8 +44,7 @@ public class DigestUtil {
     public static String sha256(byte[] source) {
         try {
             return digest(source, Algorithm.SHA256);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        } catch (NoSuchAlgorithmException ignore) {
         }
         return null;
     }
@@ -55,8 +52,7 @@ public class DigestUtil {
     public static String sha512(byte[] source) {
         try {
             return digest(source, Algorithm.SHA512);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        } catch (NoSuchAlgorithmException ignore) {
         }
         return null;
     }
@@ -180,7 +176,7 @@ public class DigestUtil {
         for (byte item : source) {
             //这里item会被当做32位int来处理, 正数高位全是0, 负数高位全是1, 所以需要& 0xf0, 去除负数时高位的1, 右移4位后也是int值;
             //>>> 无符号右移;
-            builder.append(HEX_CHAR[(item & 0xf0) >>> 4]);
+            builder.append(HEX_CHAR[(item & 0xf0) >>> 4]); // 0xf0 为16进制, 转换成2进制是11110000
             // 取出字节的低四位 作为索引得到相应的十六进制标识符
             builder.append(HEX_CHAR[item & 0x0f]);
         }

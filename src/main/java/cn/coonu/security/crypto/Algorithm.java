@@ -38,8 +38,8 @@ public enum Algorithm {
     /**
      * 构造方法只能是private 所以这里省略,因为枚举类只能在类中定义好对象,不能在外部定义;
      *
-     * @param algorithmName
-     * @param description
+     * @param algorithmName 算法名称
+     * @param description 描述
      */
     Algorithm(String algorithmName, String description) {
         this.algorithmName = algorithmName;
@@ -53,4 +53,5 @@ public enum Algorithm {
     public String getDescription() {
         return this.description;
     }
+
 }

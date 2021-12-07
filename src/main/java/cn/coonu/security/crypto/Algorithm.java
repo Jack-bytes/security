@@ -5,7 +5,6 @@ package cn.coonu.security.crypto;
  *
  * @author Jack Wang
  */
-@SuppressWarnings("unused")
 public enum Algorithm {
 
     // ++++++++++++++++++++++++ Digest常用 ++++++++++++++++++++++++

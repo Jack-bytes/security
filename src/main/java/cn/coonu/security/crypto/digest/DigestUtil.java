@@ -21,7 +21,7 @@ import java.security.NoSuchAlgorithmException;
 @SuppressWarnings("unused")
 public class DigestUtil {
 
-    private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     // ++++++++++++++++++++++++ MD5 AND SHA, 返回的摘要信息均是16进制的字符串 ++++++++++++++++++++++++
 
@@ -200,6 +200,6 @@ public class DigestUtil {
         for (byte item : source) {
             builder.append(Integer.toHexString((item & 0xFF) | 0x100), 1, 3);
         }
-        return builder.toString().toUpperCase();
+        return builder.toString();
     }
 }

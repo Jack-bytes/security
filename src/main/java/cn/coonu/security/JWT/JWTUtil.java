@@ -9,6 +9,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Map;
 
@@ -50,11 +51,11 @@ public class JWTUtil {     //重新写单例模式,getInstance,然后把添加�
 	|         C O N S T R U C T O R S           |
 	============================================*/
 
-    private JWTUtil(String secret) {
-        if (secret == null || "".equals(secret.trim())) {
+    private JWTUtil(String secret) {  // secret至少256位;
+        if (secret == null || secret.length() == 0) {
             throw new IllegalArgumentException("请设置算法秘钥!");
         }
-        this.algorithm = Algorithm.HMAC256(secret);
+        this.algorithm = Algorithm.HMAC256(secret.getBytes(StandardCharsets.UTF_8));
     }
 
     /*--------------------------------------------
@@ -66,12 +67,6 @@ public class JWTUtil {     //重新写单例模式,getInstance,然后把添加�
             synchronized (JWTUtil.class) {
                 if (util == null) {
                     util = new JWTUtil(secret);
-
-
-
-
-
-
                 }
             }
         }

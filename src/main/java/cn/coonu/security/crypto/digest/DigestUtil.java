@@ -79,6 +79,21 @@ public class DigestUtil {
     // +++++++++++++++++++++++++++ HMAC, 返回的摘要信息均是16进制的字符串 +++++++++++++++++++++++++++
 
     /**
+     * HMAC_MD5 算法生成摘要信息;
+     *
+     * @param source 待生成摘要信息的源数据;
+     * @param key    秘钥,相当于盐值,可以用方法生成,也可以自己定义;
+     * @return 摘要信息;
+     */
+    public static String hmacMD5(byte[] source, byte[] key) {
+        return hmac(source, key, HmacAlgorithms.HMAC_MD5);
+    }
+
+    public static String hmacSHA1(byte[] source, byte[] key) {
+        return hmac(source, key, HmacAlgorithms.HMAC_SHA1);
+    }
+
+    /**
      * HMAC_SHA256 算法生成摘要信息;
      *
      * @param source 待生成摘要信息的源数据;
@@ -89,15 +104,8 @@ public class DigestUtil {
         return hmac(source, key, HmacAlgorithms.HMAC_SHA_256);
     }
 
-    /**
-     * HMAC_MD5 算法生成摘要信息;
-     *
-     * @param source 待生成摘要信息的源数据;
-     * @param key    秘钥,相当于盐值,可以用方法生成,也可以自己定义;
-     * @return 摘要信息;
-     */
-    public static String hmacMD5(byte[] source, byte[] key) {
-        return hmac(source, key, HmacAlgorithms.HMAC_MD5);
+    public static String hmacSHA512(byte[] source, byte[] key) {
+        return hmac(source, key, HmacAlgorithms.HMAC_SHA_512);
     }
 
     /**

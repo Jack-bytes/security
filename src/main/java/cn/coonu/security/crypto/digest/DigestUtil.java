@@ -2,10 +2,10 @@ package cn.coonu.security.crypto.digest;
 
 import cn.coonu.security.base64.Base64Util;
 import cn.coonu.security.crypto.algorithm.Algorithm;
+import cn.coonu.security.crypto.algorithm.HmacAlgorithms;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
-import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
@@ -86,12 +86,7 @@ public class DigestUtil {
      * @return 摘要信息;
      */
     public static String hmacSHA256(byte[] source, byte[] key) {
-        try {
-            return hmac(source, key, Algorithm.HMAC_SHA_256);
-        } catch (NoSuchAlgorithmException | InvalidKeyException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return hmac(source, key, HmacAlgorithms.HMAC_SHA_256);
     }
 
     /**
@@ -102,12 +97,7 @@ public class DigestUtil {
      * @return 摘要信息;
      */
     public static String hmacMD5(byte[] source, byte[] key) {
-        try {
-            return hmac(source, key, Algorithm.HMAC_MD5);
-        } catch (NoSuchAlgorithmException | InvalidKeyException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return hmac(source, key, HmacAlgorithms.HMAC_MD5);
     }
 
     /**
@@ -115,15 +105,19 @@ public class DigestUtil {
      *
      * @param source    待生成摘要信息的源数据;
      * @param key       秘钥,相当于盐值,可以用方法生成,也可以自己定义;
-     * @param algorithm 算法,有专用算法;
+     * @param algorithm 算法;
      * @return 摘要信息;
-     * @throws NoSuchAlgorithmException 没有此种算法则抛异常;
-     * @throws InvalidKeyException      非法密匙;
      */
-    public static String hmac(byte[] source, byte[] key, Algorithm algorithm) throws NoSuchAlgorithmException, InvalidKeyException {
-        SecretKey secretKey = new SecretKeySpec(key, algorithm.getAlgorithmName());
-        Mac mac = Mac.getInstance(algorithm.getAlgorithmName());
-        mac.init(secretKey);
+    public static String hmac(byte[] source, byte[] key, HmacAlgorithms algorithm) {
+        Mac mac = null;
+        try {
+            mac = Mac.getInstance(algorithm.getAlgorithmName());
+            mac.init(new SecretKeySpec(key, algorithm.getAlgorithmName()));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("没有指定算法", e);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException("秘钥非法", e);
+        }
         return toHexString(mac.doFinal(source));
     }
 
@@ -132,9 +126,8 @@ public class DigestUtil {
      *
      * @param algorithm 算法
      * @return 16进制形式的 key
-     * @throws NoSuchAlgorithmException 没有此种算法则抛异常;
      */
-    public static String generateHexHmacKey(Algorithm algorithm) throws NoSuchAlgorithmException {
+    public static String generateHexHmacKey(HmacAlgorithms algorithm) {
         return toHexString(generateHmacKey(algorithm));
     }
 
@@ -143,9 +136,8 @@ public class DigestUtil {
      *
      * @param algorithm 算法
      * @return base64 形式的 key
-     * @throws NoSuchAlgorithmException 没有此种算法则抛异常;
      */
-    public static String generateBase64HmacKey(Algorithm algorithm) throws NoSuchAlgorithmException {
+    public static String generateBase64HmacKey(HmacAlgorithms algorithm) {
         return Base64Util.encode(generateHmacKey(algorithm));
     }
 
@@ -154,12 +146,14 @@ public class DigestUtil {
      *
      * @param algorithm 算法名称
      * @return 秘钥byte数组;
-     * @throws NoSuchAlgorithmException 没有此种算法则抛异常;
      */
-    public static byte[] generateHmacKey(Algorithm algorithm) throws NoSuchAlgorithmException {
-        KeyGenerator generator = KeyGenerator.getInstance(algorithm.getAlgorithmName());
-        SecretKey secretKey = generator.generateKey();
-        return secretKey.getEncoded();
+    public static byte[] generateHmacKey(HmacAlgorithms algorithm) {
+        byte[] secretKey = null;
+        try {
+            secretKey = KeyGenerator.getInstance(algorithm.getAlgorithmName()).generateKey().getEncoded();
+        } catch (NoSuchAlgorithmException ignore) {
+        }
+        return secretKey;
     }
 
     // ++++++++++++++++++++++++ byte 转换成 16进制字符串 ++++++++++++++++++++++++
@@ -189,7 +183,7 @@ public class DigestUtil {
      * @param hexString 16进制字符串
      * @return byte数组;
      */
-    public static byte[] hexToBytes(String hexString){
+    public static byte[] hexToBytes(String hexString) {
 
         // TODO
         return null;

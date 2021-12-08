@@ -30,7 +30,7 @@ public class FileDigest {
             in.read(resource2);
             fis.close();
             in.close();
-            if (!DigestUtil.digest(resource, Algorithm.SHA256).equals(DigestUtil.digest(resource2, Algorithm.SHA256))) {
+            if (!DigestUtil.digest(resource, Algorithm.SHA_256).equals(DigestUtil.digest(resource2, Algorithm.SHA_256))) {
                 System.out.println(file.getName());
             }
 

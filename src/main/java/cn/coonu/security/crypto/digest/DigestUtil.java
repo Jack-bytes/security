@@ -43,7 +43,7 @@ public class DigestUtil {
 
     public static String sha256(byte[] source) {
         try {
-            return digest(source, Algorithm.SHA256);
+            return digest(source, Algorithm.SHA_256);
         } catch (NoSuchAlgorithmException ignore) {
         }
         return null;
@@ -51,7 +51,7 @@ public class DigestUtil {
 
     public static String sha512(byte[] source) {
         try {
-            return digest(source, Algorithm.SHA512);
+            return digest(source, Algorithm.SHA_512);
         } catch (NoSuchAlgorithmException ignore) {
         }
         return null;
@@ -87,7 +87,7 @@ public class DigestUtil {
      */
     public static String hmacSHA256(byte[] source, byte[] key) {
         try {
-            return hmac(source, key, Algorithm.HMAC_SHA256);
+            return hmac(source, key, Algorithm.HMAC_SHA_256);
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             e.printStackTrace();
         }

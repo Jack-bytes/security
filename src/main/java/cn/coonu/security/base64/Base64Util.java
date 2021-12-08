@@ -15,12 +15,6 @@ public class Base64Util {
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++ URL编码 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-    /**
-     * base64url 编码  不含结尾"=", 并且标准编码中的'+'和'/'会分别被替换成'-'和'_'
-     *
-     * @param source 源数据
-     * @return 编码后的字符串
-     */
     public static String encodeForUrl(String source) {
         return encodeForUrl(source.getBytes(StandardCharsets.UTF_8));
     }
@@ -37,12 +31,6 @@ public class Base64Util {
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++ 标准编码 ++++++++++++++++++++++++++++++++++++++++++++++++
 
-    /**
-     * base64 标准编码
-     *
-     * @param source 源数据
-     * @return 编码后的字符串
-     */
     public static String encode(String source) {
         return encode(source.getBytes(StandardCharsets.UTF_8));
     }

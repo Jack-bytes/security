@@ -24,16 +24,7 @@ public enum Algorithm {
     SHA3_224("SHA3-224", ""),
     SHA3_256("SHA3-256", ""),
     SHA3_384("SHA3-384", ""),
-    SHA3_512("SHA3-512", ""),
-
-    // ++++++++++++++++++++++++ HMAC专用 ++++++++++++++++++++++++
-
-    HMAC_MD5("HmacMD5", ""),
-    HMAC_SHA1("HmacSHA1", ""),
-    HMAC_SHA_224("HmacSHA224", ""),
-    HMAC_SHA_256("HmacSHA256", ""),
-    HMAC_SHA_384("HmacSHA384", ""),
-    HMAC_SHA_512("HmacSHA512", "");
+    SHA3_512("SHA3-512", "");
 
     private final String algorithmName;
     private final String description;
@@ -42,7 +33,7 @@ public enum Algorithm {
      * 构造方法只能是private 所以这里省略,因为枚举类只能在类中定义好对象,不能在外部定义;
      *
      * @param algorithmName 算法名称
-     * @param description 描述
+     * @param description   描述
      */
     Algorithm(String algorithmName, String description) {
         this.algorithmName = algorithmName;

@@ -1,7 +1,8 @@
 package cn.coonu.security;
 
-import cn.coonu.security.crypto.digest.DigestUtil;
 import cn.coonu.security.crypto.algorithm.Algorithm;
+import cn.coonu.security.crypto.algorithm.HmacAlgorithms;
+import cn.coonu.security.crypto.digest.DigestUtil;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
@@ -47,11 +48,11 @@ public class DigestTest {
 
     @Test
     public void test2() throws NoSuchAlgorithmException {
-        System.out.println(DigestUtil.generateBase64HmacKey(Algorithm.HMAC_SHA_512));
+        System.out.println(DigestUtil.generateBase64HmacKey(HmacAlgorithms.HMAC_SHA_512));
     }
 
     @Test
     public void test3() throws InvalidKeyException, NoSuchAlgorithmException {
-        System.out.println(DigestUtil.hmac("sfsgh4rwgfsd".getBytes(StandardCharsets.UTF_8), "dfsgsdgsee".getBytes(), Algorithm.HMAC_MD5));
+        System.out.println(DigestUtil.hmac("sfsgh4rwgfsd".getBytes(StandardCharsets.UTF_8), "dfsgsdgsee".getBytes(), HmacAlgorithms.HMAC_MD5));
     }
 }

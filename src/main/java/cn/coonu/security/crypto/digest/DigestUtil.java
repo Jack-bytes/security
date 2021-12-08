@@ -13,7 +13,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * 获取摘要 算法包含MD5等, 详见 Algorithm
+ * 获取摘要 算法包含MD5等, 详见 algorithm包
  *
  * @author Jack Wang
  * @see Algorithm
@@ -26,38 +26,22 @@ public class DigestUtil {
     // ++++++++++++++++++++++++ MD5 AND SHA, 返回的摘要信息均是16进制的字符串 ++++++++++++++++++++++++
 
     public static String md5(byte[] source) {
-        try {
-            return digest(source, Algorithm.MD5);
-        } catch (NoSuchAlgorithmException ignore) {
-        }
-        return null;
+        return digest(source, Algorithm.MD5);
     }
 
     public static String sha1(byte[] source) {
-        try {
-            return digest(source, Algorithm.SHA1);
-        } catch (NoSuchAlgorithmException ignore) {
-        }
-        return null;
+        return digest(source, Algorithm.SHA1);
     }
 
     public static String sha256(byte[] source) {
-        try {
-            return digest(source, Algorithm.SHA_256);
-        } catch (NoSuchAlgorithmException ignore) {
-        }
-        return null;
+        return digest(source, Algorithm.SHA_256);
     }
 
     public static String sha512(byte[] source) {
-        try {
-            return digest(source, Algorithm.SHA_512);
-        } catch (NoSuchAlgorithmException ignore) {
-        }
-        return null;
+        return digest(source, Algorithm.SHA_512);
     }
 
-    public static String digest(String source, Algorithm algorithm) throws NoSuchAlgorithmException {
+    public static String digest(String source, Algorithm algorithm) {
         return digest(source.getBytes(StandardCharsets.UTF_8), algorithm);
     }
 
@@ -67,24 +51,20 @@ public class DigestUtil {
      *
      * @param source    源数据
      * @param algorithm 算法名称
-     * @return 摘要信息字符串
-     * @throws NoSuchAlgorithmException 没有此算法时抛异常
+     * @return 16进制摘要信息字符串
      */
-    public static String digest(byte[] source, Algorithm algorithm) throws NoSuchAlgorithmException {
-        MessageDigest digest = MessageDigest.getInstance(algorithm.getAlgorithmName());
-        byte[] result = digest.digest(source);
+    public static String digest(byte[] source, Algorithm algorithm) {
+        byte[] result;
+        try {
+            result = MessageDigest.getInstance(algorithm.getAlgorithmName()).digest(source);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("没有此算法!", e);
+        }
         return toHexString(result);
     }
 
     // +++++++++++++++++++++++++++ HMAC, 返回的摘要信息均是16进制的字符串 +++++++++++++++++++++++++++
 
-    /**
-     * HMAC_MD5 算法生成摘要信息;
-     *
-     * @param source 待生成摘要信息的源数据;
-     * @param key    秘钥,相当于盐值,可以用方法生成,也可以自己定义;
-     * @return 摘要信息;
-     */
     public static String hmacMD5(byte[] source, byte[] key) {
         return hmac(source, key, HmacAlgorithms.HMAC_MD5);
     }
@@ -93,13 +73,6 @@ public class DigestUtil {
         return hmac(source, key, HmacAlgorithms.HMAC_SHA1);
     }
 
-    /**
-     * HMAC_SHA256 算法生成摘要信息;
-     *
-     * @param source 待生成摘要信息的源数据;
-     * @param key    秘钥,相当于盐值,可以用方法生成,也可以自己定义;
-     * @return 摘要信息;
-     */
     public static String hmacSHA256(byte[] source, byte[] key) {
         return hmac(source, key, HmacAlgorithms.HMAC_SHA_256);
     }
@@ -109,15 +82,15 @@ public class DigestUtil {
     }
 
     /**
-     * HMAC 算法生成摘要信息;
+     * HMAC 算法生成16进制摘要信息字符串;
      *
      * @param source    待生成摘要信息的源数据;
      * @param key       秘钥,相当于盐值,可以用方法生成,也可以自己定义;
      * @param algorithm 算法;
-     * @return 摘要信息;
+     * @return 16进制摘要信息字符串;
      */
     public static String hmac(byte[] source, byte[] key, HmacAlgorithms algorithm) {
-        Mac mac = null;
+        Mac mac;
         try {
             mac = Mac.getInstance(algorithm.getAlgorithmName());
             mac.init(new SecretKeySpec(key, algorithm.getAlgorithmName()));
@@ -204,4 +177,5 @@ public class DigestUtil {
         }
         return builder.toString();
     }
+
 }

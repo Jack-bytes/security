@@ -1,7 +1,7 @@
 package cn.coonu.security.crypto.digest;
 
 import cn.coonu.security.base64.Base64Util;
-import cn.coonu.security.crypto.Algorithm;
+import cn.coonu.security.crypto.algorithm.Algorithm;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;

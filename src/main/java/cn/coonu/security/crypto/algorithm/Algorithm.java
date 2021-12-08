@@ -1,4 +1,4 @@
-package cn.coonu.security.crypto;
+package cn.coonu.security.crypto.algorithm;
 
 /**
  * 摘要算法名称

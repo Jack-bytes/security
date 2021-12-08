@@ -1,7 +1,7 @@
 package cn.coonu.security;
 
 import cn.coonu.security.crypto.digest.DigestUtil;
-import cn.coonu.security.crypto.Algorithm;
+import cn.coonu.security.crypto.algorithm.Algorithm;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

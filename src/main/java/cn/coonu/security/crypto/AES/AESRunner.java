@@ -18,6 +18,9 @@ public class AESRunner {
         Security.addProvider(new BouncyCastleProvider());
     }
 
+    /**
+     * 16, 24, 32字节长度;
+     */
     private final byte[] aesKey;
 
     /**
@@ -28,7 +31,7 @@ public class AESRunner {
 
 //    private String mode;
 //
-//    private String padding;
+    private String padding = "NoPadding";
 
     public AESRunner(byte[] aesKey, byte[] iv) {
         this.aesKey = aesKey;
@@ -59,6 +62,7 @@ public class AESRunner {
 
     public byte[] decrypt(byte[] ciphertext) {
         byte[] plaintext;
+//        System.out.println("密文长度: "+ciphertext.length);
         try {
             Cipher cipher = Cipher.getInstance(AESRunner.ALGORITHM, "BC");
             cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(this.aesKey, "AES"), new IvParameterSpec(this.iv));
